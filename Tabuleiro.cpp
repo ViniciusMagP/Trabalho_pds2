@@ -26,8 +26,8 @@ Tabuleiro::Tabuleiro(){
     pieces[7][5].tipo = 'B';
     pieces[0][2].tipo = 'b';
     pieces[0][5].tipo = 'b';
-    pieces[7][3].tipo = 'K';
-    pieces[7][4].tipo = 'Q';
+    pieces[7][3].tipo = 'Q';
+    pieces[7][4].tipo = 'K';
     pieces[0][3].tipo = 'k';
     pieces[0][4].tipo = 'q';
 
@@ -76,8 +76,8 @@ void Tabuleiro::Reset(){
     pieces[7][5].tipo = 'B';
     pieces[0][2].tipo = 'b';
     pieces[0][5].tipo = 'b';
-    pieces[7][3].tipo = 'K';
-    pieces[7][4].tipo = 'Q';
+    pieces[7][3].tipo = 'Q';
+    pieces[7][4].tipo = 'K';
     pieces[0][3].tipo = 'k';
     pieces[0][4].tipo = 'q';
 
