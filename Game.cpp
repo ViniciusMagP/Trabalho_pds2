@@ -4,6 +4,7 @@
 #include <vector>
 #include <cstdlib>
 #include <cctype>
+#include <fstream>
 
 //ambas as próximas funções servem apenas para controle de dados e estatísticas
 void Game::IncreaseTurn(){
@@ -390,12 +391,28 @@ void Game::Move(int x, int y, int xp, int yp){
         std::cout << "Brancos ganharam!" << std::endl;
         game = 0;
     }
+
 }
 
-void Game::SavePlay(int x, int y, int xp, int yp){
+void Game::SavePlay(int x, int y, int xp, int yp, std::string nome){
     //Armazena no vetor a jogada para que seja salva posteriormente
     Hist temp = {x, y, xp, yp};
     History.push_back(temp);
+    
+    std::cout << "aaaaaaaaaaaa";
+
+    /// Abre o arquivo do usuário e grava as ações do jogo
+    std::fstream arquivo;
+
+    arquivo.open(nome + ".txt", std::ios::out | std::ios::app);
+
+    arquivo << "Turno: " << GetTurn() << "." << std::endl << "Movimento das " << WhoTurn() << std::endl 
+    << " Linha: " << x+1 << " Coluna: " << y+1 << " Para --> " << " Linha: " << xp+1 << " Coluna: "<< yp+1 << std::endl;
+
+    arquivo.close();
+
+
+
 }
 
 int getchar(char x){
@@ -457,7 +474,7 @@ int getchar(char x){
     return get;
 }
 
-void Game::GameStart(){
+void Game::GameStart(std::string nome){
     //esta função é responsável por executar o jogo, de maneira padrão
     char x, xp;
     char y, yp;
@@ -478,7 +495,7 @@ void Game::GameStart(){
         //caso a jogada seja inválida, a função responsável avisará o motivo e nada ocorrerá no tabuleiro
         if(IsValid(getchar(y), getchar(x), getchar(yp), getchar(xp))){
             //caso seja válida, salva a jogada e executa
-            SavePlay(getchar(y), getchar(x), getchar(yp), getchar(xp));
+            SavePlay(getchar(y), getchar(x), getchar(yp), getchar(xp), nome);
             Move(getchar(y), getchar(x), getchar(yp), getchar(xp));
             IncreaseTurn();
         }

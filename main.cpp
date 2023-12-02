@@ -4,9 +4,12 @@
 #include <string>
 #include <cstdlib>
 #include "login.hpp"
-
-Menu menu;
+#include "Game.hpp"
 
 int main(){
-    menu.tela_inicial();
+
+    Login login;
+    login.tela_inicial();
+    Game a;
+    a.GameStart(login.getNome());
 }

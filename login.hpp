@@ -7,18 +7,32 @@
 #include <fstream>
 #include <cstdlib>
 
-class Menu{
-public:
-//registra um usuario no sistema
-void register_user();
 
-//loga um usuario no sistema
-void login_user();
+class Login{
 
-//mostra a tela inicial
-void tela_inicial();
+    protected:
 
-//mostra o menu
-void show_menu();
+    std::string nome;
+    std::string senha;
+    std::fstream arq;
+
+    public:
+
+    //mostra a tela inicial
+    void tela_inicial();
+
+    //mostra o menu
+    void show_menu();
+
+    //registra um usuario no sistema
+        void register_user();
+
+    //loga um usuario no sistema
+        void login_user();
+
+    //pega o nome do usuario
+
+    std::string getNome() {return nome;};
+
 
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include "Tabuleiro.hpp"
+#include "login.hpp"
 #include <iostream>
 #include <vector>
 
@@ -11,17 +12,17 @@ typedef struct Hist{
     int yp;
 }Hist;
 
-class Game{
+class Game : public Login {
     public:
 //Relacionados a quantidade de turnos:
     void IncreaseTurn();
     unsigned GetTurn();
     std::string WhoTurn();
 //Relacionados ao histórico de partida:
-    void SavePlay(int x, int y, int xp, int yp);
+    void SavePlay(int x, int y, int xp, int yp, std::string);
     void LoadGame();
 //Administração/execução do jogo
-    void GameStart();
+    void GameStart(std::string nome);
 //Movimentos pre definidos das peças
     bool Cavalo(int x, int y, int xp, int yp);
     bool Torre(int x, int y, int xp, int yp);
