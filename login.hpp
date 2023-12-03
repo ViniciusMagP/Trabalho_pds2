@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LOGIN_HPP
+#define LOGIN_HPP
 
 #include <iostream>
 #include <utility>
@@ -7,32 +8,27 @@
 #include <fstream>
 #include <cstdlib>
 
-
-class Login{
-
-    protected:
-
+class Login {
+protected:
     std::string nome;
     std::string senha;
     std::fstream arq;
 
-    public:
-
-    //mostra a tela inicial
+public:
+    // Mostra a tela inicial
     void tela_inicial();
 
-    //mostra o menu
+    // Mostra o menu
     void show_menu();
 
-    //registra um usuario no sistema
-        void register_user();
+    // Registra um usuário no sistema
+    void register_user();
 
-    //loga um usuario no sistema
-        void login_user();
+    // Loga um usuário no sistema
+    void login_user();
 
-    //pega o nome do usuario
-
-    std::string getNome() {return nome;};
-
-
+    // Pega o nome do usuário
+    std::string getNome() { return nome; };
 };
+
+#endif // LOGIN_HPP

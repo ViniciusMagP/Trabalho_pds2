@@ -10,6 +10,4 @@ int main(){
 
     Login login;
     login.tela_inicial();
-    Game a;
-    a.GameStart(login.getNome());
 }

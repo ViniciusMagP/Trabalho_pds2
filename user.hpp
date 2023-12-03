@@ -1,24 +1,14 @@
 #ifndef USER_HPP
 #define USER_HPP
 
-#include<string>
-#include<fstream>
+#include <string>
+#include <fstream>
 
-class User{
+class User {
+public:
 
 
-
-    public:
-
-    
-//registra um usuario no sistema
-    void register_user();
-
-//loga um usuario no sistema
-    void login_user();
 
 };
 
-
-
-#endif
+#endif // USER_HPP

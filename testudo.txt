@@ -1,8 +1,0 @@
-testudo
-1234
-Turno: 1.
-Movimento das brancas
- Linha: 2 Coluna: 1 Para -->  Linha: 3 Coluna: 1
-Turno: 1.
-Movimento das pretas
- Linha: 7 Coluna: 1 Para -->  Linha: 6 Coluna: 1
