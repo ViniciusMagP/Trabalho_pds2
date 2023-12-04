@@ -20,9 +20,9 @@ class Game : public Login {
     std::string WhoTurn();
 //Relacionados ao histórico de partida:
     void SavePlay(int x, int y, int xp, int yp, std::string);
-    void LoadGame();
+    void LoadGame(std::string jogo);
 //Administração/execução do jogo
-    void GameStart(std::string nome);
+    void GameStart(std::string nomedojogo, std::string nomedouser);
 //Movimentos pre definidos das peças
     bool Cavalo(int x, int y, int xp, int yp);
     bool Torre(int x, int y, int xp, int yp);
