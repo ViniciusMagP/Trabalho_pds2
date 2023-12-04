@@ -406,7 +406,7 @@ void Game::SavePlay(int x, int y, int xp, int yp, std::string nome){
 
     arquivo.open(nome + ".txt", std::ios::out | std::ios::app);
 
-    arquivo << x << " " << y << " " << xp << yp << std::endl;
+    arquivo << x << " " << y << " " << xp << " " << yp << std::endl;
 
     arquivo.close();
 
