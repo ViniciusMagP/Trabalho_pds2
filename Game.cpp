@@ -406,8 +406,7 @@ void Game::SavePlay(int x, int y, int xp, int yp, std::string nome){
 
     arquivo.open(nome + ".txt", std::ios::out | std::ios::app);
 
-    arquivo << "Turno: " << GetTurn() << "." << std::endl << "Movimento das " << WhoTurn() << std::endl 
-    << " Linha: " << x+1 << " Coluna: " << y+1 << " Para --> " << " Linha: " << xp+1 << " Coluna: "<< yp+1 << std::endl;
+    arquivo << x << " " << y << " " << xp << yp << std::endl;
 
     arquivo.close();
 
