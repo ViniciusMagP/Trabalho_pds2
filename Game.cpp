@@ -520,6 +520,8 @@ void Game::GameStart(std::string nomea, std::string nomedouser){
     }
     std::cout << "O jogo terminou, pressione uma tecla para continuar: ";
     std::string a;
+    game = 1;
+    Tab.Reset();
     std::cin >> a;
 }
 
