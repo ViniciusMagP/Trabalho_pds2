@@ -406,12 +406,12 @@ void Game::Move(int x, int y, int xp, int yp){
 
 }
 
-void Game::SavePlay(int x, int y, int xp, int yp, std::string nomea) {
+void Game::SavePlay(int x, int y, int xp, int yp, std::string nomea, std::string nomedouser) {
     // Armazena no vetor a jogada para que seja salva posteriormente
     Hist temp = {x, y, xp, yp};
     History.push_back(temp);
 
-    std::string userFolderPath = "user/" + nomea;
+    std::string userFolderPath = "user/" + nomedouser;
 
     // Verifica se o diretório do usuário existe e cria se não existir
     if (!std::filesystem::exists(userFolderPath)) {
@@ -422,9 +422,7 @@ void Game::SavePlay(int x, int y, int xp, int yp, std::string nomea) {
     // Abre o arquivo do usuário e grava as ações do jogo
     std::fstream arquivo(userFilePath, std::ios::out | std::ios::app);
 
-    arquivo << "Turno: " << GetTurn() << "." << std::endl << "Movimento das " << WhoTurn() << std::endl
-            << " Linha: " << x + 1 << " Coluna: " << y + 1 << " Para --> " << " Linha: " << xp + 1 << " Coluna: "
-            << yp + 1 << std::endl;
+    arquivo << x << " " << y << " " << xp << " " << yp << std::endl;
 
     arquivo.close();
 }
@@ -488,7 +486,7 @@ int getchar(char x){
     return get;
 }
 
-void Game::GameStart(std::string nomea){
+void Game::GameStart(std::string nomea, std::string nomedouser){
     //esta função é responsável por executar o jogo, de maneira padrão
     char x, xp;
     char y, yp;
@@ -509,7 +507,7 @@ void Game::GameStart(std::string nomea){
         //caso a jogada seja inválida, a função responsável avisará o motivo e nada ocorrerá no tabuleiro
         if(IsValid(getchar(y), getchar(x), getchar(yp), getchar(xp))){
             //caso seja válida, salva a jogada e executa
-            SavePlay(getchar(y), getchar(x), getchar(yp), getchar(xp), nomea);
+            SavePlay(getchar(y), getchar(x), getchar(yp), getchar(xp), nomea, nomedouser);
             Move(getchar(y), getchar(x), getchar(yp), getchar(xp));
             IncreaseTurn();
         }
@@ -525,13 +523,22 @@ void Game::GameStart(std::string nomea){
     std::cin >> a;
 }
 
-void Game::LoadGame(){
+void Game::LoadGame(std::string jogo){
+    std::fstream f;
+    f.open(jogo, std::ios::in);
+    int x, y, xp, yp;
+    Hist temp;
+    while(f >> x >> y >> xp >> yp){
+        Move(x, y, xp, yp);
+        IncreaseTurn();
+        temp.x = x;
+        temp.y = y;
+        temp.xp = xp;
+        temp.yp = yp;
+        History.push_back(temp);
+    }
 //esta função está relacionada com o banco de dados,
 //onde é possível capturar as jogadas realizadas e continuar de onde tenha parado
 //Nota que não é preciso validar jogadas, uma vez que apenas jogadas válidas são salvas
 //Para continuar o progresso, basta usar a função antes de iniciar com GameStart()
-    for(int i = 0; i < History.size(); i++){
-        Move(History[i].x, History[i].y, History[i].xp, History[i].yp);
-        IncreaseTurn();
-    }
 }
