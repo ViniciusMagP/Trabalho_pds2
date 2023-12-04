@@ -8,24 +8,25 @@ void Login::tela_inicial() {
     system("cls");
     std::cout << "Bem vindo!" << std::endl << "1 - Logar" << std::endl;
     std::cout << "2 - Registrar novo usuário" << std::endl << "3 - Terminar o programa" << std::endl;
-    std::string x;
+    char x;
     std::cin >> x;
     system("cls");
 
     switch (x) {
-    case "1":
+    case '1':
         login_user();
         break;
 
-    case "2":
+    case '2':
         register_user();
         break;
 
-    case "3":
+    case '3':
         system("cls");
         exit(0);
 
     default:
+        tela_inicial();
         break;
     }
 }
@@ -35,19 +36,19 @@ Game Jogo;
 void Login::show_menu() {
     system("cls");
     std::cout << "Usuário logado" << std::endl << std::endl << "1 - Jogar" << std::endl << "2 - Carregar Jogo" << std::endl;
-    std::cout << "3 - Mudar usuário" << std::endl << "4 - Histórico" << std::endl << "5 - Terminar programa" << std::endl;
-    std::string x;
+    std::cout << "3 - Mudar usuário" << std::endl << "4 - Terminar programa" << std::endl;
+    char x;
     std::cin >> x;
     std::string JogoNome;
     switch (x) {
-    case "1":
+    case '1':
         system("cls");
         std::cout << "Escreve o nome da partida" << std::endl;
         std::cin >> JogoNome;
         Jogo.GameStart(JogoNome, getNome());
         show_menu();
         break;
-    case "2":
+    case '2':
         system("cls");
         std::cout << "Escreva o nome da partida" << std::endl;
         std::cin >> JogoNome;
@@ -56,10 +57,10 @@ void Login::show_menu() {
         Jogo.GameStart(JogoNome, getNome());
         show_menu();
         break;
-    case "3":
+    case '3':
         tela_inicial();
         break;
-    case "5":
+    case '4':
         system("cls");
         exit(0);
         break;
