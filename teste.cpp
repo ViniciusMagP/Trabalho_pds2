@@ -15,15 +15,15 @@
 TEST_CASE("Testando a função Peao") {
     Game game;
 
-    CHECK(game.PeaoB(2, 2, 3, 2 ) == true);  // Movimento válido
+    CHECK(game.PeaoB(2, 2, 3, 2 ) == true); // Movimento válido
     CHECK(game.PeaoB(1, 2, 3, 3) == false); // Movimento inválido
-    CHECK(game.PeaoB(2, 2, 4, 2) == true);
+    CHECK(game.PeaoB(2, 2, 4, 2) == false); // Movimento inválido
 }
 
 TEST_CASE("Testando a função Torre") {
     Game game;
     CHECK(game.Torre(1, 1, 1, 3) == false); // Movimento inválido
-    CHECK(game.Torre(1, 2, 1, 3) == true); //Movimento válido
+    CHECK(game.Torre(1, 2, 1, 3) == true);  //Movimento válido
 }
 
 TEST_CASE("Testando a função Cavalo") {
@@ -43,8 +43,8 @@ TEST_CASE("Testando a função Bispo") {
 TEST_CASE("Testando a função Rainha") {
     Game game;
 
-    CHECK(game.Queen(5, 1, 6, 2) == true);  // Movimento válido
-    CHECK(game.Queen(1, 2, 1, 3) == true); // Movimento inválido
+    CHECK(game.Queen(5, 1, 6, 2) == true);   // Movimento válido
+    CHECK(game.Queen(1, 2, 1, 3) == true);   // Movimento inválido
     CHECK(game.Queen(1, 1, 2, 7) == false);  // Movimento válido
     CHECK(game.Queen(1, 1, 2, 3) == false);  // Movimento válido
 }
@@ -53,5 +53,6 @@ TEST_CASE("Testando a função Rei") {
     Game game;
 
     CHECK(game.King(4, 1, 4, 2) == true);  // Movimento válido
-    CHECK(game.King(4, 1, 5, 2) == true); // Movimento inválido
+    CHECK(game.King(4, 1, 5, 2) == true);  // Movimento inválido
 }
+

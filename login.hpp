@@ -10,7 +10,7 @@
 
 class Login {
 protected:
-    std::string nome;
+    std::string nomeL;
     std::string senha;
     std::fstream arq;
 
@@ -28,7 +28,7 @@ public:
     void login_user();
 
     // Pega o nome do usuário
-    std::string getNome() { return nome; };
+    std::string getNome() { return nomeL; };
 };
 
 #endif // LOGIN_HPP

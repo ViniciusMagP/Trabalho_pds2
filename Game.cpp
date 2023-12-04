@@ -1,10 +1,12 @@
 #include "Game.hpp"
 #include "Tabuleiro.hpp"
+#include "Login.hpp"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
 #include <cctype>
 #include <fstream>
+#include <filesystem>
 
 //ambas as próximas funções servem apenas para controle de dados e estatísticas
 void Game::IncreaseTurn(){
@@ -28,6 +30,11 @@ std::string Game::WhoTurn(){
 //As funções especificam o erro em forma de dica
 bool Game::PeaoB(int x, int y, int xp, int yp){
     bool frente = 0;
+    if(turn == 1) {
+        if(xp == x + 2){
+            frente = 1;
+        }
+    }
     if(xp == x + 1){
         frente = 1;
     }
@@ -48,6 +55,11 @@ bool Game::PeaoB(int x, int y, int xp, int yp){
 }
 bool Game::PeaoP(int x, int y, int xp, int yp){
     bool frente = 0;
+    if(turn == 1) {
+        if(xp == x - 2){
+            frente = 1;
+        }
+    }
     if(xp == x - 1){
         frente = 1;
     }
@@ -394,25 +406,27 @@ void Game::Move(int x, int y, int xp, int yp){
 
 }
 
-void Game::SavePlay(int x, int y, int xp, int yp, std::string nome){
-    //Armazena no vetor a jogada para que seja salva posteriormente
+void Game::SavePlay(int x, int y, int xp, int yp, std::string nomea) {
+    // Armazena no vetor a jogada para que seja salva posteriormente
     Hist temp = {x, y, xp, yp};
     History.push_back(temp);
-    
-    std::cout << "aaaaaaaaaaaa";
 
-    /// Abre o arquivo do usuário e grava as ações do jogo
-    std::fstream arquivo;
+    std::string userFolderPath = "user/" + nomea;
 
-    arquivo.open(nome + ".txt", std::ios::out | std::ios::app);
+    // Verifica se o diretório do usuário existe e cria se não existir
+    if (!std::filesystem::exists(userFolderPath)) {
+        std::filesystem::create_directory(userFolderPath);
+    }
 
-    arquivo << "Turno: " << GetTurn() << "." << std::endl << "Movimento das " << WhoTurn() << std::endl 
-    << " Linha: " << x+1 << " Coluna: " << y+1 << " Para --> " << " Linha: " << xp+1 << " Coluna: "<< yp+1 << std::endl;
+    std::string userFilePath = userFolderPath + "/" + nomea + ".txt";
+    // Abre o arquivo do usuário e grava as ações do jogo
+    std::fstream arquivo(userFilePath, std::ios::out | std::ios::app);
+
+    arquivo << "Turno: " << GetTurn() << "." << std::endl << "Movimento das " << WhoTurn() << std::endl
+            << " Linha: " << x + 1 << " Coluna: " << y + 1 << " Para --> " << " Linha: " << xp + 1 << " Coluna: "
+            << yp + 1 << std::endl;
 
     arquivo.close();
-
-
-
 }
 
 int getchar(char x){
@@ -474,7 +488,7 @@ int getchar(char x){
     return get;
 }
 
-void Game::GameStart(std::string nome){
+void Game::GameStart(std::string nomea){
     //esta função é responsável por executar o jogo, de maneira padrão
     char x, xp;
     char y, yp;
@@ -495,7 +509,7 @@ void Game::GameStart(std::string nome){
         //caso a jogada seja inválida, a função responsável avisará o motivo e nada ocorrerá no tabuleiro
         if(IsValid(getchar(y), getchar(x), getchar(yp), getchar(xp))){
             //caso seja válida, salva a jogada e executa
-            SavePlay(getchar(y), getchar(x), getchar(yp), getchar(xp), nome);
+            SavePlay(getchar(y), getchar(x), getchar(yp), getchar(xp), nomea);
             Move(getchar(y), getchar(x), getchar(yp), getchar(xp));
             IncreaseTurn();
         }
