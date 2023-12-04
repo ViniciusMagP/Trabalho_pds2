@@ -7,7 +7,7 @@
 void Login::tela_inicial() {
     system("cls");
     std::cout << "Bem vindo!" << std::endl << "1 - Logar" << std::endl;
-    std::cout << "2 - Registrar novo usuário" << std::endl << "3 - Terminar o programa" << std::endl;
+    std::cout << "2 - Registrar novo usuario" << std::endl << "3 - Terminar o programa" << std::endl;
     char x;
     std::cin >> x;
     system("cls");
@@ -35,15 +35,15 @@ Game Jogo;
 
 void Login::show_menu() {
     system("cls");
-    std::cout << "Usuário logado" << std::endl << std::endl << "1 - Jogar" << std::endl << "2 - Carregar Jogo" << std::endl;
-    std::cout << "3 - Mudar usuário" << std::endl << "4 - Terminar programa" << std::endl;
+    std::cout << "Usuario logado" << std::endl << std::endl << "1 - Jogar" << std::endl << "2 - Carregar Jogo" << std::endl;
+    std::cout << "3 - Mudar usuario" << std::endl << "4 - Terminar programa" << std::endl;
     char x;
     std::cin >> x;
     std::string JogoNome;
     switch (x) {
     case '1':
         system("cls");
-        std::cout << "Escreve o nome da partida" << std::endl;
+        std::cout << "Escreva o nome da partida" << std::endl;
         std::cin >> JogoNome;
         Jogo.GameStart(JogoNome, getNome());
         show_menu();
@@ -72,7 +72,7 @@ void Login::show_menu() {
 }
 
 void Login::register_user() {
-    std::cout << "Digite um usuário" << std::endl;
+    std::cout << "Digite um usuario" << std::endl;
     std::cin >> nomeL;
 
     // Verifica se o diretório "user" existe e cria se não existir
@@ -86,7 +86,7 @@ void Login::register_user() {
 
     if (arq) {
         system("cls");
-        std::cout << "O usuário já existe" << std::endl << std::endl;
+        std::cout << "O usuario ja existe" << std::endl << std::endl;
         tela_inicial();
     } else {
         std::cout << "Digite uma senha" << std::endl;
@@ -98,7 +98,7 @@ void Login::register_user() {
 
         arq.close();
         system("cls");
-        std::cout << "Usuário registrado com sucesso" << std::endl << std::endl;
+        std::cout << "Usuario registrado com sucesso" << std::endl << std::endl;
         tela_inicial();
     }
 }
@@ -107,7 +107,7 @@ void Login::login_user() {
     std::string nome_aux;
     std::string senha_aux;
 
-    std::cout << "Digite seu usuário" << std::endl;
+    std::cout << "Digite seu usuario" << std::endl;
     std::cin >> nomeL;
 
     // Verifica se o diretório "user" existe e cria se não existir
@@ -129,7 +129,7 @@ void Login::login_user() {
 
         if (senha == senha_aux) {
             system("cls");
-            std::cout << "Usuário logado com sucesso" << std::endl << std::endl;
+            std::cout << "Usuario logado com sucesso" << std::endl << std::endl;
             show_menu();
         } else {
             system("cls");
@@ -138,7 +138,7 @@ void Login::login_user() {
         }
     } else {
         system("cls");
-        std::cout << "O usuário fornecido não existe" << std::endl << std::endl;
+        std::cout << "O usuario fornecido nao existe" << std::endl << std::endl;
         tela_inicial();
     }
 
