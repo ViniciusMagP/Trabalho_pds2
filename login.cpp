@@ -44,10 +44,18 @@ void Login::show_menu() {
         system("cls");
         std::cout << "Escreve o nome da partida" << std::endl;
         std::cin >> JogoNome;
-        Jogo.GameStart(JogoNome);
+        Jogo.GameStart(JogoNome, getNome());
+        show_menu();
+        break;
     case 2:
         system("cls");
-        void LoadGame();
+        std::cout << "Escreva o nome da partida" << std::endl;
+        std::cin >> JogoNome;
+        auxnome = "user/" + getNome() + "/" + JogoNome;
+        Jogo.LoadGame(auxnome);
+        Jogo.GameStart(JogoNome, getNome());
+        show_menu();
+        break;
     case 4:
         tela_inicial();
         break;
@@ -57,6 +65,7 @@ void Login::show_menu() {
         break;
 
     default:
+        show_menu();
         break;
     }
 }
