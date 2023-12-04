@@ -490,6 +490,7 @@ void Game::GameStart(std::string nomea, std::string nomedouser){
     //esta função é responsável por executar o jogo, de maneira padrão
     char x, xp;
     char y, yp;
+    turn = 0;
     std::cout << "Bem vindo ao jogo de xadrez" << std::endl
      << "Peças brancas em minusculo e pretas em maiusculo" << std::endl
      << "Para parar o jogo, digite apenas S" << std::endl;
