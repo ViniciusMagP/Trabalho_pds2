@@ -19,7 +19,7 @@ class Game : public Login {
     unsigned GetTurn();
     std::string WhoTurn();
 //Relacionados ao histórico de partida:
-    void SavePlay(int x, int y, int xp, int yp, std::string);
+    void SavePlay(int x, int y, int xp, int yp, std::string nomea, std::string nomedouser);
     bool LoadGame(std::string jogo);
 //Administração/execução do jogo
     void GameStart(std::string nomedojogo, std::string nomedouser);
