@@ -1,5 +1,5 @@
 CC := g++
-FLAGS := -std=c++17 -Wall
+FLAGS := -Wall
 SRC := main.cpp Game.cpp Tabuleiro.cpp login.cpp
 SRCTST := teste.cpp Game.cpp Tabuleiro.cpp login.cpp
 OBJ := $(SRC:.cpp=.o)
