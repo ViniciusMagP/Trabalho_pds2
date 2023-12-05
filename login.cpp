@@ -53,7 +53,7 @@ void Login::show_menu() {
         system("cls");
         std::cout << "Escreva o nome da partida" << std::endl;
         std::cin >> JogoNome;
-        auxnome = "user/" + getNome() + "/" + JogoNome;
+        auxnome = "user/" + getNome() + "/" + JogoNome + ".txt";
         if(Jogo.LoadGame(auxnome)){
             Jogo.GameStart(JogoNome, getNome());
         }
