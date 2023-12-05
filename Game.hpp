@@ -23,7 +23,7 @@ class Game : public Login {
     bool exist(std::string name);
 ///@return carrega o jogo escolhido existente
 //Relacionados ao histórico de partida:
-    bool LoadGame(std::string jogo)
+    void LoadGame(std::string jogo);
 
 ///@param verifica de quem eh o turno
     std::string WhoTurn();
