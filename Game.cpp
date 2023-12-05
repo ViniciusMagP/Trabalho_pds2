@@ -513,7 +513,11 @@ void Game::GameStart(std::string nomea, std::string nomedouser){
             break;
         }
         std::cin >> y >> xp >> yp;
-        system("CLS");
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
         //caso a jogada seja inválida, a função responsável avisará o motivo e nada ocorrerá no tabuleiro
         if(IsValid(getchar(y), getchar(x), getchar(yp), getchar(xp))){
             //caso seja válida, salva a jogada e executa
