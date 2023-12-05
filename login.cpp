@@ -5,12 +5,20 @@
 #include <iostream>
 
 void Login::tela_inicial() {
-    system("cls");
+    #ifdef _WIN32
+        std::system("cls");
+    #else
+        std::system("clear");
+    #endif
     std::cout << "Bem vindo!" << std::endl << "1 - Logar" << std::endl;
     std::cout << "2 - Registrar novo usuario" << std::endl << "3 - Terminar o programa" << std::endl;
     char x;
     std::cin >> x;
-    system("cls");
+    #ifdef _WIN32
+        std::system("cls");
+    #else
+        std::system("clear");
+    #endif
 
     switch (x) {
     case '1':
@@ -22,7 +30,11 @@ void Login::tela_inicial() {
         break;
 
     case '3':
-        system("cls");
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
         exit(0);
 
     default:
@@ -34,7 +46,11 @@ void Login::tela_inicial() {
 Game Jogo;
 
 void Login::show_menu() {
-    system("cls");
+    #ifdef _WIN32
+        std::system("cls");
+    #else
+        std::system("clear");
+    #endif
     std::cout << "Usuario logado" << std::endl << std::endl << "1 - Jogar" << std::endl << "2 - Carregar Jogo" << std::endl;
     std::cout << "3 - Mudar usuario" << std::endl << "4 - Terminar programa" << std::endl;
     char x;
@@ -43,14 +59,22 @@ void Login::show_menu() {
     std::string auxnome;
     switch (x) {
     case '1':
-        system("cls");
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
         std::cout << "Escreva o nome da partida" << std::endl;
         std::cin >> JogoNome;
         Jogo.GameStart(JogoNome, getNome());
         show_menu();
         break;
     case '2':
-        system("cls");
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
         std::cout << "Escreva o nome da partida" << std::endl;
         std::cin >> JogoNome;
         auxnome = "user/" + getNome() + "/" + JogoNome + ".txt";
@@ -64,7 +88,11 @@ void Login::show_menu() {
         tela_inicial();
         break;
     case '4':
-        system("cls");
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
         exit(0);
         break;
 
@@ -88,7 +116,11 @@ void Login::register_user() {
     std::fstream arq(userFilePath, std::ios::in);
 
     if (arq) {
-        system("cls");
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
         std::cout << "O usuario ja existe" << std::endl << std::endl;
         tela_inicial();
     } else {
@@ -100,7 +132,11 @@ void Login::register_user() {
         arq << senha << std::endl;
 
         arq.close();
-        system("cls");
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
         std::cout << "Usuario registrado com sucesso" << std::endl << std::endl;
         tela_inicial();
     }
@@ -131,16 +167,28 @@ void Login::login_user() {
         std::cin >> senha;
 
         if (senha == senha_aux) {
-            system("cls");
+            #ifdef _WIN32
+                std::system("cls");
+            #else
+                std::system("clear");
+            #endif
             std::cout << "Usuario logado com sucesso" << std::endl << std::endl;
             show_menu();
         } else {
-            system("cls");
+            #ifdef _WIN32
+                std::system("cls");
+            #else
+                std::system("clear");
+            #endif
             std::cout << "Senha incorreta" << std::endl << std::endl;
             tela_inicial();
         }
     } else {
-        system("cls");
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
         std::cout << "O usuario fornecido nao existe" << std::endl << std::endl;
         tela_inicial();
     }
