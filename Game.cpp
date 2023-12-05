@@ -526,7 +526,7 @@ void Game::GameStart(std::string nomea, std::string nomedouser){
     std::cin >> a;
 }
 
-void Game::LoadGame(std::string jogo){
+bool Game::LoadGame(std::string jogo){
     std::fstream f;
     f.open(jogo, std::ios::in);
     int x, y, xp, yp;
