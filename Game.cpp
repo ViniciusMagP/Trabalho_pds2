@@ -314,6 +314,18 @@ bool Game::Queen(int x, int y, int xp, int yp){
 
 bool Game::IsValid(int x, int y, int xp, int yp){
     //regras globais para todas as peças do jogo
+    if(turn%2 == 0){
+        if(Tab.pieces[x][y].cor == 'B'){
+            std::cout << "Turno das brancas" << std::endl;
+            return 0;
+        }
+    }
+    if(turn%2 == 1){
+        if(Tab.pieces[x][y].cor == 'P'){
+            std::cout << "Turno das brancas" << std::endl;
+            return 0;
+        }
+    }
     if(Tab.pieces[x][y].tipo == '-'){
         std::cout << "Peca inexistente" << std::endl;
         return 0;
@@ -501,7 +513,7 @@ void Game::GameStart(std::string nomea, std::string nomedouser){
     char y, yp;
     turn = 0;
     std::cout << "Bem vindo ao jogo de xadrez" << std::endl
-     << "Pecas brancas em minusculo e pretas em maiusculo" << std::endl
+     << "Pecas brancas em maiusculo e pretas em minusculo" << std::endl
      << "Para parar o jogo, digite apenas S" << std::endl;
     Tab.Print();
     std::cout << "Turno " << GetTurn() << ", vez das "<< WhoTurn() << std::endl;
