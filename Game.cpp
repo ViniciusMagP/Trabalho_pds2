@@ -406,6 +406,15 @@ void Game::Move(int x, int y, int xp, int yp){
 
 }
 
+bool Game::exist(std::string name){
+    fstream filetest;
+    filetest.open(name, std::ios::in);
+    if(f){
+        return 1;
+    }
+    return 0;
+}
+
 void Game::SavePlay(int x, int y, int xp, int yp, std::string nomea, std::string nomedouser) {
     // Armazena no vetor a jogada para que seja salva posteriormente
     Hist temp = {x, y, xp, yp};
