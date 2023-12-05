@@ -14,16 +14,29 @@ typedef struct Hist{
 
 class Game : public Login {
     public:
-//Relacionados a quantidade de turnos:
-    void IncreaseTurn();
-    unsigned GetTurn();
-    std::string WhoTurn();
+///@brief inicia uma nova partida
+//Administração/execução do jogo
+    void GameStart(std::string nomedojogo, std::string nomedouser)
+///@brief carrega um jogo salvo
+///@param verifica se a partida escolhda para carregar existe
 //Relacionados ao histórico de partida:
     bool exist(std::string name);
+///@return carrega o jogo escolhido existente
+//Relacionados ao histórico de partida:
+    bool LoadGame(std::string jogo)
+
+///@param verifica de quem eh o turno
+    std::string WhoTurn();
+///@return o jogador que deverá jogar
+    unsigned GetTurn();
+///@return incrementa a quantidade de turnos jogados
+//Relacionados a quantidade de turnos:
+    void IncreaseTurn();
+///@brief salvar partidas
+///@return salva a partida
+//Relacionados ao histórico de partida:
     void SavePlay(int x, int y, int xp, int yp, std::string nomea, std::string nomedouser);
-    void LoadGame(std::string jogo);
-//Administração/execução do jogo
-    void GameStart(std::string nomedojogo, std::string nomedouser);
+
 //Movimentos pre definidos das peças
     bool Cavalo(int x, int y, int xp, int yp);
     bool Torre(int x, int y, int xp, int yp);
