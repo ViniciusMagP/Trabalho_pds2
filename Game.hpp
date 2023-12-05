@@ -16,7 +16,7 @@ class Game : public Login {
     public:
 ///@brief inicia uma nova partida
 //Administração/execução do jogo
-    void GameStart(std::string nomedojogo, std::string nomedouser)
+    void GameStart(std::string nomedojogo, std::string nomedouser);
 ///@brief carrega um jogo salvo
 ///@param verifica se a partida escolhda para carregar existe
 //Relacionados ao histórico de partida:
