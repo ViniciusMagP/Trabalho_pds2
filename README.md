@@ -1,5 +1,6 @@
-# Xadrez
 # Trabalho_pds2
+# Xadrez
+
 
 • O projeto consiste em um sistema de controle e acessibilidade de forma a possibilitar a realização de um jogo de xadrez entre jogadores, por meio de um sistema de login, controle das jogadas e armazenamento dos dados com o intuito de mostrar os números do jogo e o ganhador;<br/>
 • O projeto consiste em um programa que permite ao usuário jogar partidas de xadrez, sendo que este possui login e estatísticas. Cada jogador possuirá um usuário e senha que permitirá seu login dentro da plataforma. Ao entrar no programa, será possivel jogar xadrez com outra pessoa revezando os turnos e ver as estatísticas de jogos passados;<br/>
