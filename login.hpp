@@ -16,10 +16,10 @@ protected:
     std::fstream arq;
 
 public:
-    ///@brief exibe a primeira tela do jogo
+    ///@return exibe a primeira tela do jogo
     void tela_inicial();
 
-    ///@brief exibe o menu principal do jogo
+    ///@return exibe o menu principal do jogo
     void show_menu();
 
     ///@brief registra um usuario no sistema
