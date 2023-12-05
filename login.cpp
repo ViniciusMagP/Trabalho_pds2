@@ -53,8 +53,9 @@ void Login::show_menu() {
         std::cout << "Escreva o nome da partida" << std::endl;
         std::cin >> JogoNome;
         auxnome = "user/" + getNome() + "/" + JogoNome;
-        Jogo.LoadGame(auxnome);
-        Jogo.GameStart(JogoNome, getNome());
+        if(Jogo.LoadGame(auxnome)){
+            Jogo.GameStart(JogoNome, getNome());
+        }
         show_menu();
         break;
     case '3':
