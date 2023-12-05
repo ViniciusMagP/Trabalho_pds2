@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include "login.hpp"
 
-Menu menu;
+Login menu;
 
 int main(){
     menu.tela_inicial();
