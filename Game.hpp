@@ -19,8 +19,9 @@ class Game : public Login {
     unsigned GetTurn();
     std::string WhoTurn();
 //Relacionados ao histórico de partida:
+    bool exist(std::string name);
     void SavePlay(int x, int y, int xp, int yp, std::string nomea, std::string nomedouser);
-    bool LoadGame(std::string jogo);
+    void LoadGame(std::string jogo);
 //Administração/execução do jogo
     void GameStart(std::string nomedojogo, std::string nomedouser);
 //Movimentos pre definidos das peças
