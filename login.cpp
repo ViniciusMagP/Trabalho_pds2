@@ -55,7 +55,7 @@ void Login::show_menu() {
         std::cin >> JogoNome;
         auxnome = "user/" + getNome() + "/" + JogoNome + ".txt";
         if(Jogo.exist(auxnome)){
-            Jogo.LoadGame(auxnome)
+            Jogo.LoadGame(auxnome);
             Jogo.GameStart(JogoNome, getNome());
         }
         show_menu();
