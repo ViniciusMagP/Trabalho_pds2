@@ -1,113 +1,197 @@
 #include "login.hpp"
-#include "user.hpp"
+#include "Game.hpp"
+#include <filesystem>
+#include <fstream>
+#include <iostream>
 
-void Menu::register_user(){
-    std::string qualquer_coisa;
-    std::string nome;
-    std::string senha;
-    std::cout<<"Digite um usuário"<<std::endl;
-    std::cin >> nome;
-    std::fstream file;
-    file.open(nome, std::ios::in);
-    if(file){
-        system("clear");
-        std::cout<<"O usuário ja exite"<<std::endl<<std::endl;
-        std::cout<<"Digite qualquer coisa e pressione ENTER para retornar a tela inicial"<<std::endl;
-        std::cin>>qualquer_coisa;
-        tela_inicial();
-    } 
-    else{
-        system("clear");
-        std::cout<<"Digite uma senha"<<std::endl;
-        std::cin >> senha;
-        file.open(nome, std::ios::out);
-        file << nome << std::endl;
-        file << senha << std::endl;
-        system("clear");
-        std::cout<<"Usuário registrado com sucesso"<<std::endl<<std::endl;
-        std::cout<<"Digite qualquer coisa e pressione ENTER para retornar a tela inicial"<<std::endl;
-        std::cin>>qualquer_coisa;
-        tela_inicial();
-    }
-}
-
-
-void Menu::login_user(){
-    system("clear");
-    std::string qualquer_coisa;
-    std::string nome, nome_aux;
-    std::string senha, senha_aux;
-    std::cout<<"Digite seu usuário"<<std::endl;
-    std::cin>> nome;
-    std::fstream file;
-    file.open(nome, std::ios::in);
-    if(file){
-        getline(file, nome_aux);
-        getline(file, senha_aux);
-        system("clear");
-        std::cout<<"Bem vindo "<<nome<<std::endl<<std::endl<<"Digite sua senha por favor:"<<std::endl;
-        std::cin >> senha;
-        if(senha==senha_aux){
-            system("clear");
-            std::cout<<"Usuário logado com sucesso"<<std::endl<<std::endl;
-            std::cout<<"Digite qualquer coisa e pressione ENTER para ir a tela principal"<<std::endl;
-            std::cin>>qualquer_coisa;
-            show_menu();
-        }
-        system("clear");
-        std::cout<<"Senha incorreta"<<std::endl<<std::endl;
-        std::cout<<"Digite qualquer coisa e pressione ENTER para retornar a tela inicial"<<std::endl;
-        std::cin>>qualquer_coisa;
-        tela_inicial();
-    }
-    system("clear");
-    std::cout<<"O usuário fornecido não existe"<<std::endl<<std::endl;
-    std::cout<<"Digite qualquer coisa e pressione ENTER para retornar a tela inicial"<<std::endl;
-    std::cin>>qualquer_coisa;
-    tela_inicial();
-} 
-
-void Menu::tela_inicial(){
-    system("clear");
+void Login::tela_inicial() {
+    #ifdef _WIN32
+        std::system("cls");
+    #else
+        std::system("clear");
+    #endif
     std::cout << "Bem vindo!" << std::endl << "1 - Logar" << std::endl;
-    std::cout << "2 - Registrar novo usuario" << std::endl << "3 - Terminar o programa" << std::endl;;
-    int x;
+    std::cout << "2 - Registrar novo usuario" << std::endl << "3 - Terminar o programa" << std::endl;
+    char x;
     std::cin >> x;
-    system("clear");
+    #ifdef _WIN32
+        std::system("cls");
+    #else
+        std::system("clear");
+    #endif
 
-    switch (x)
-    {
-    case 1:
+    switch (x) {
+    case '1':
         login_user();
         break;
 
-    case 2:
+    case '2':
         register_user();
         break;
 
-    case 3:
+    case '3':
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
         exit(0);
-    
+
     default:
+        tela_inicial();
         break;
     }
 }
 
-void Menu::show_menu(){
-    system("clear");
-    std::cout << "Usuário logado" << std::endl << std::endl << "1 - Jogar" << std::endl; 
-    std::cout << "2 - Mudar usuario" << std::endl << "3 - Terminar programa" << std::endl;
-    int x;
+Game Jogo;
+
+void Login::show_menu() {
+    #ifdef _WIN32
+        std::system("cls");
+    #else
+        std::system("clear");
+    #endif
+    std::cout << "Usuario logado" << std::endl << std::endl << "1 - Jogar" << std::endl << "2 - Carregar Jogo" << std::endl;
+    std::cout << "3 - Mudar usuario" << std::endl << "4 - Terminar programa" << std::endl;
+    char x;
     std::cin >> x;
-    switch (x)
-    {
-    case 2:
+    std::string JogoNome;
+    std::string auxnome;
+    switch (x) {
+    case '1':
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
+        std::cout << "Escreva o nome da partida" << std::endl;
+        std::cin >> JogoNome;
+        Jogo.GameStart(JogoNome, getNome());
+        show_menu();
+        break;
+    case '2':
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
+        std::cout << "Escreva o nome da partida" << std::endl;
+        std::cin >> JogoNome;
+        auxnome = "user/" + getNome() + "/" + JogoNome + ".txt";
+        if(Jogo.exist(auxnome)){
+            Jogo.LoadGame(auxnome);
+            Jogo.GameStart(JogoNome, getNome());
+        }
+        show_menu();
+        break;
+    case '3':
         tela_inicial();
-    case 3:
+        break;
+    case '4':
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
         exit(0);
         break;
-    
+
     default:
+        show_menu();
         break;
     }
+}
+
+void Login::register_user() {
+    std::cout << "Digite um usuario" << std::endl;
+    std::cin >> nomeL;
+
+    // Verifica se o diretório "user" existe e cria se não existir
+    if (!std::filesystem::exists("user")) {
+        std::filesystem::create_directory("user");
+    }
+
+    std::string userFilePath = "user/" + nomeL + ".txt";
+
+    std::fstream arq(userFilePath, std::ios::in);
+
+    if (arq) {
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
+        std::cout << "O usuario ja existe" << std::endl << std::endl;
+        tela_inicial();
+    } else {
+        std::cout << "Digite uma senha" << std::endl;
+        std::cin >> senha;
+
+        std::fstream arq(userFilePath, std::ios::out);
+        arq << nomeL << std::endl;
+        arq << senha << std::endl;
+
+        arq.close();
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
+        std::cout << "Usuario registrado com sucesso" << std::endl << std::endl;
+        tela_inicial();
+    }
+}
+
+void Login::login_user() {
+    std::string nome_aux;
+    std::string senha_aux;
+
+    std::cout << "Digite seu usuario" << std::endl;
+    std::cin >> nomeL;
+
+    // Verifica se o diretório "user" existe e cria se não existir
+    if (!std::filesystem::exists("user")) {
+        std::filesystem::create_directory("user");
+    }
+
+    std::string userFilePath = "user/" + nomeL + ".txt";
+
+    std::fstream file;
+    file.open(userFilePath, std::ios::in);
+
+    if (file) {
+        getline(file, nome_aux);
+        getline(file, senha_aux);
+
+        std::cout << "Bem-vindo " << nomeL << std::endl << std::endl << "Digite sua senha por favor:" << std::endl;
+        std::cin >> senha;
+
+        if (senha == senha_aux) {
+            #ifdef _WIN32
+                std::system("cls");
+            #else
+                std::system("clear");
+            #endif
+            std::cout << "Usuario logado com sucesso" << std::endl << std::endl;
+            show_menu();
+        } else {
+            #ifdef _WIN32
+                std::system("cls");
+            #else
+                std::system("clear");
+            #endif
+            std::cout << "Senha incorreta" << std::endl << std::endl;
+            tela_inicial();
+        }
+    } else {
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            std::system("clear");
+        #endif
+        std::cout << "O usuario fornecido nao existe" << std::endl << std::endl;
+        tela_inicial();
+    }
+
+    file.close();
 }
