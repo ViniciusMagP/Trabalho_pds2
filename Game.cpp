@@ -407,9 +407,9 @@ void Game::Move(int x, int y, int xp, int yp){
 }
 
 bool Game::exist(std::string name){
-    fstream filetest;
+    std::fstream filetest;
     filetest.open(name, std::ios::in);
-    if(f){
+    if(filetest){
         return 1;
     }
     return 0;
@@ -535,13 +535,9 @@ void Game::GameStart(std::string nomea, std::string nomedouser){
     std::cin >> a;
 }
 
-bool Game::LoadGame(std::string jogo){
+void Game::LoadGame(std::string jogo){
     std::fstream f;
     f.open(jogo, std::ios::in);
-    if(!f){
-        std::cout << "Jogo inexistente." << std::endl;
-        return 0;
-    }
     int x, y, xp, yp;
     Hist temp;
     while(f >> x >> y >> xp >> yp){
@@ -553,7 +549,6 @@ bool Game::LoadGame(std::string jogo){
         temp.yp = yp;
         History.push_back(temp);
     }
-    return 1;
 //esta função está relacionada com o banco de dados,
 //onde é possível capturar as jogadas realizadas e continuar de onde tenha parado
 //Nota que não é preciso validar jogadas, uma vez que apenas jogadas válidas são salvas
