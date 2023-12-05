@@ -40,6 +40,7 @@ void Login::show_menu() {
     char x;
     std::cin >> x;
     std::string JogoNome;
+    std::string auxnome;
     switch (x) {
     case '1':
         system("cls");
