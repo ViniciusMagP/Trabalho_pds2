@@ -54,7 +54,7 @@ void Login::show_menu() {
         std::cout << "Escreva o nome da partida" << std::endl;
         std::cin >> JogoNome;
         auxnome = "user/" + getNome() + "/" + JogoNome + ".txt";
-        if(Jogo.exist()){
+        if(Jogo.exist(auxnome)){
             Jogo.LoadGame(auxnome)
             Jogo.GameStart(JogoNome, getNome());
         }
