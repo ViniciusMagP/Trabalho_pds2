@@ -8,6 +8,7 @@
 #include <fstream>
 #include <cstdlib>
 
+//class que representa as informações pessoais de login do usuário
 class Login {
 protected:
     std::string nomeL;
@@ -15,19 +16,20 @@ protected:
     std::fstream arq;
 
 public:
-    // Mostra a tela inicial
+    ///@brief exibe a primeira tela do jogo
     void tela_inicial();
 
-    // Mostra o menu
+    ///@brief exibe o menu principal do jogo
     void show_menu();
 
-    // Registra um usuário no sistema
+    ///@brief registra um usuario no sistema
     void register_user();
 
-    // Loga um usuário no sistema
+    ///@brief faz o login de um usuario no sistema
     void login_user();
 
-    // Pega o nome do usuário
+    ///@return exibe o nome do usuario
+    ///@param verifica se o usuario existe
     std::string getNome() { return nomeL; };
 };
 
